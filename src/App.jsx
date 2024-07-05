@@ -91,7 +91,7 @@ function App() {
 
       return () => clearInterval(intervalTimer);
     }
-  }, [isRunning, minutes, seconds]);
+  }, [isRunning, minutes, seconds, playSound]);
 
   const startTimer = useCallback(() => {
     setIsRunning(!isRunning);
@@ -130,9 +130,9 @@ function App() {
       )}
       <div className="content-app">
         <div className={`options ${darkMode ? "dark-options" : ""}`}>
-          <a onClick={focusTimer}>Focus</a>
-          <a onClick={shortBreakTimer}>Short break</a>
-          <a onClick={longBreakTimer}>Long break</a>
+          <button onClick={focusTimer}>Focus</button>
+          <button onClick={shortBreakTimer}>Short break</button>
+          <button onClick={longBreakTimer}>Long break</button>
         </div>
 
         <div className="timer">
@@ -141,22 +141,22 @@ function App() {
             {String(seconds).padStart(2, "0")}
           </p>
           <div className="timer-options">
-            <a onClick={startTimer}>{timerAction}</a>
+            <button className={`options ${darkMode ? "dark-timer" : ""}`} onClick={startTimer}>{timerAction}</button>
           </div>
         </div>
         <p className="phrase">{phrase}</p>
 
         <div className="mode">
           {darkMode ? (
-            <a onClick={handleThemeChange}>{lightIcon}</a>
+            <div onClick={handleThemeChange}>{lightIcon}</div>
           ) : (
-            <a onClick={handleThemeChange}>{darkIcon}</a>
+            <div onClick={handleThemeChange}>{darkIcon}</div>
           )}
         </div>
         <div className="open-modal">
-          <a onClick={() => setOpenModal((prev) => !prev)}>
+          <div onClick={() => setOpenModal((prev) => !prev)}>
             What is the pomodoro technique?
-          </a>
+          </div>
         </div>
       </div>
     </div>

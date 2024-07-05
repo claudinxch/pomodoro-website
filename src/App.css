@@ -35,7 +35,7 @@
     margin-bottom: 20px;
 }
 
-.options a {
+.options button {
     background: transparent;
     padding: 12px 30px;
     font-size: 1.3rem;
@@ -46,11 +46,11 @@
     margin-right: 20px;
 }
 
-.options a:last-child{
+.options button:last-child{
     margin-right: 0px;
 }
 
-.dark-options a {
+.dark-options button {
     color: white;
 }
 
@@ -63,14 +63,20 @@
     flex-direction: column;
 }
 
-.timer-options a{
+.timer-options button{
     cursor: pointer;
+    background: none;
+    border: none;
     font-size: 1.8rem;
     margin-bottom: 10px;
     transition: all 0.2s ease;
 }
 
-.timer-options a:hover {
+.timer-options .dark-timer {
+    color: white;
+}
+
+.timer-options button:hover {
     scale: 1.25;
 }
 
