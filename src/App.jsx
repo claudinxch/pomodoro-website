@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
 import sound from "./sounds/bell sound.mp3";
 import Modal from "./components/Modal";
-import "./app.css";
+import "./styles.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPause,
