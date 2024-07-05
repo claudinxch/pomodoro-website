@@ -2,8 +2,13 @@ import { useState, useEffect, useCallback } from "react";
 import sound from "./sounds/bell sound.mp3";
 import Modal from "./components/Modal";
 import "./app.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPause, faPlay, faSun, faMoon } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPause,
+  faPlay,
+  faSun,
+  faMoon,
+} from "@fortawesome/free-solid-svg-icons";
 
 const playIcon = <FontAwesomeIcon icon={faPlay} />;
 const pauseIcon = <FontAwesomeIcon icon={faPause} />;
@@ -16,7 +21,7 @@ function App() {
   const [seconds, setSeconds] = useState(0);
   const [phrase, setPhrase] = useState("Time to focus!");
   const [timerAction, setTimerAction] = useState(playIcon);
-  const [darkMode, setDarkMode] = useState(false)
+  const [darkMode, setDarkMode] = useState(false);
 
   const [openModal, setOpenModal] = useState(() => {
     const storedValue = localStorage.getItem("modalOpen");
@@ -55,20 +60,19 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const theme = localStorage.getItem('theme');
+    const theme = localStorage.getItem("theme");
 
-    if(theme){
-      setDarkMode(JSON.parse(theme))
+    if (theme) {
+      setDarkMode(JSON.parse(theme));
     }
-
-  }, [])
+  }, []);
 
   useEffect(() => {
     if (isRunning) {
       const intervalTimer = setInterval(() => {
         if (minutes === 0 && seconds === 0) {
           setIsRunning(false);
-          setTimerAction(playIcon)
+          setTimerAction(playIcon);
           clearInterval(intervalTimer);
           playSound();
           setTimeout(() => {
@@ -104,12 +108,12 @@ function App() {
   };
 
   const handleThemeChange = () => {
-    setDarkMode(!darkMode)
-    localStorage.setItem('theme', JSON.stringify(!darkMode))
-  }
+    setDarkMode(!darkMode);
+    localStorage.setItem("theme", JSON.stringify(!darkMode));
+  };
 
   return (
-    <div className={`container ${darkMode ? 'dark' : '' }`}>
+    <div className={`container ${darkMode ? "dark" : ""}`}>
       {openModal ? (
         <Modal darkMode={darkMode} closeModal={closeAndSaveModal}>
           <h3>What is the Pomodoro Technique?</h3>
@@ -125,7 +129,7 @@ function App() {
         ""
       )}
       <div className="content-app">
-        <div className={`options ${darkMode ? 'dark-options' : '' }`}>
+        <div className={`options ${darkMode ? "dark-options" : ""}`}>
           <a onClick={focusTimer}>Focus</a>
           <a onClick={shortBreakTimer}>Short break</a>
           <a onClick={longBreakTimer}>Long break</a>
@@ -143,10 +147,16 @@ function App() {
         <p className="phrase">{phrase}</p>
 
         <div className="mode">
-          {darkMode ? <a onClick={handleThemeChange}>{lightIcon}</a>: <a onClick={handleThemeChange}>{darkIcon}</a>}
+          {darkMode ? (
+            <a onClick={handleThemeChange}>{lightIcon}</a>
+          ) : (
+            <a onClick={handleThemeChange}>{darkIcon}</a>
+          )}
         </div>
         <div className="open-modal">
-          <a onClick={() => setOpenModal(!openModal)}>What is the pomodoro technique?</a>
+          <a onClick={() => setOpenModal((prev) => !prev)}>
+            What is the pomodoro technique?
+          </a>
         </div>
       </div>
     </div>
